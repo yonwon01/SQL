@@ -23,7 +23,7 @@ select department_id, department_name, manager_id, location_id from departments 
 select count(manager_id) from departments where manager_id is null;
 
 --문제8
-select upper(country_name) from countries where region_id is not null;
+select upper(country_name) from countries where region_id is not null order by country_name;
 
 --문제9
 select region_name from regions order by length(region_name);
