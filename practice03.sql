@@ -1,5 +1,5 @@
-
 --1.
+
 SELECT emp.employee_id,
        emp.FIRST_NAME,
        dep.department_name,
@@ -11,38 +11,58 @@ SELECT emp.employee_id,
 
 
 --2.
-select region_name,country_name
-from regions, countries
-where regions.REGION_ID=countries.REGION_ID
-order by region_name desc, country_name desc;
+
+  SELECT region_name, country_name
+    FROM regions, countries
+   WHERE regions.REGION_ID = countries.REGION_ID
+ORDER BY region_name DESC, country_name DESC;
 
 --3
-select dep.DEPARTMENT_ID, dep.DEPARTMENT_NAME,man.FIRST_NAME, loc.city, co.country_name , reg.REGION_NAME
-from employees emp, employees man, departments dep, locations loc, countries co,regions reg
-where emp.MANAGER_ID=man.EMPLOYEE_ID and emp.DEPARTMENT_ID=dep.DEPARTMENT_ID and loc.LOCATION_ID=dep.LOCATION_ID
-and co.COUNTRY_ID=loc.COUNTRY_ID and reg.REGION_ID=co.REGION_ID;
+
+SELECT dep.DEPARTMENT_ID,
+       dep.DEPARTMENT_NAME,
+       man.FIRST_NAME,
+       loc.city,
+       co.country_name,
+       reg.REGION_NAME
+  FROM employees emp,
+       employees man,
+       departments dep,
+       locations loc,
+       countries co,
+       regions reg
+ WHERE     emp.MANAGER_ID = man.EMPLOYEE_ID
+       AND emp.DEPARTMENT_ID = dep.DEPARTMENT_ID
+       AND loc.LOCATION_ID = dep.LOCATION_ID
+       AND co.COUNTRY_ID = loc.COUNTRY_ID
+       AND reg.REGION_ID = co.REGION_ID;
 
 
 --4.
 
 
-select emp.first_name||' '||emp.LAST_NAME,ji.JOB_ID from job_history jh, employees emp ,jobs ji
-where jh.EMPLOYEE_ID=emp.EMPLOYEE_ID and ji.JOB_ID=jh.JOB_ID
- and (jh.END_DATE<sysdate);
+SELECT emp.first_name || ' ' || emp.LAST_NAME, ji.JOB_ID
+  FROM job_history jh, employees emp, jobs ji
+ WHERE     jh.EMPLOYEE_ID = emp.EMPLOYEE_ID
+       AND ji.JOB_ID = jh.JOB_ID
+       AND (jh.END_DATE < SYSDATE);
 
 
 
 --5.
-select emp.employee_id ,emp.first_name,emp.last_name 
-, emp2.employee_id,emp2.first_name,emp2.last_name
-FROM employees emp, employees emp2
-where emp.LAST_NAME=emp2.LAST_NAME
-order by emp.LAST_NAME;
+
+  SELECT emp.employee_id,
+         emp.first_name,
+         emp.last_name,
+         emp2.employee_id,
+         emp2.first_name,
+         emp2.last_name
+    FROM employees emp, employees emp2
+   WHERE emp.LAST_NAME = emp2.LAST_NAME
+ORDER BY emp.LAST_NAME;
 
 --6
-select emp.employee_id, emp.last_name ,emp.HIRE_DATE,man.HIRE_DATE from employees emp, employees man
-where emp.MANAGER_ID=man.EMPLOYEE_ID and emp.HIRE_DATE<man.HIRE_DATE;
 
-
-
-
+SELECT emp.employee_id, emp.last_name, emp.HIRE_DATE
+  FROM employees emp, employees man
+ WHERE emp.MANAGER_ID = man.EMPLOYEE_ID AND emp.HIRE_DATE < man.HIRE_DATE;
